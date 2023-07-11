@@ -555,9 +555,13 @@ function getStats()
   
   
   
-  ksort($gweapon);
-  
-  
+  //ksort($gweapon);
+
+  $gweapon = array();
+ksort($gweapon);
+foreach ($gweapon as $key => $val) {
+    echo "$key = $val\n";
+}  
   //htmlprint_r($gmatrixtotal);
 }
 //*************************************************************************
@@ -589,8 +593,13 @@ function drawPreyOrEnemyList($what,$limit)
   unset($player_list['_v_player']);
   unset($player_list[$GLOBALS['playerID']]);
 
-  arsort($player_list,SORT_NUMERIC);
+ // arsort($player_list,SORT_NUMERIC);
 
+$player_list = array(SORT_NUMERIC);
+arsort($player_list);
+foreach ($player_list as $key => $val) {
+//    echo "$key = $val\n";
+}
   ?>
   <!-- prey/enemy  table begin ##################################################-->
   <table style="border-width: 0" CELLSPACING=0 CELLPADDING=2 WIDTH="100%">
