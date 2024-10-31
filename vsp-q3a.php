@@ -184,10 +184,10 @@
           //change: special chars
           if ($this->V93da65a9['xp_version'] <= 103) {
               // 1.03 special chars
-              $V341be97d = preg_replace("/\+([\x01-\x7F])#/e", "chr(ord('\\1') + 127)", $V341be97d);
+              $Vaa8af3eb = preg_replace_callback("/\+([\x01-\x7F])#/", fn($matches) => chr(ord($matches[1]) + 127), $V341be97d);
           } else {
               // 1.04 special chars
-              $V341be97d = preg_replace("/#(#|[0-9a-f]{2})/ie", "'\\1' == '#' ? '#' : chr(hexdec('\\1'))", $V341be97d);
+              $Vaa8af3eb = preg_replace_callback("/#(#|[0-9a-f]{2})/i", fn($matches) => $matches[1] == '#' ? '#' : chr(hexdec($matches[1])), $V341be97d);
           }
           //endchange
           $V70dda5df = array("#555555", "#e90000", "#00dd24", "#f5d800", "#2e61c8", "#16b4a5", "#f408f1", "#efefef", "#ebbc1b");
@@ -200,7 +200,7 @@
           $V341be97d = preg_replace('/\^s/', "^7", $V341be97d);
           $V341be97d = preg_replace('/(\^(x[a-fA-F0-9]{6}|[^\^]))\^(x[a-fA-F0-9]{6}|[^\^])/', "\\1", $V341be97d);
           $V341be97d = preg_replace('/\^x([a-fA-F0-9]{6})/i', "`#\\1", $V341be97d);
-          $V341be97d = preg_replace('/\^([^\^<])/e', "'`' . \$V70dda5df[ord('\\1') % 8]", $V341be97d);
+          $V341be97d = preg_replace_callback('/\^([^\^<])/', fn($matches) => '`' . $V70dda5df[ord($matches[1]) % 8], $V341be97d);
           $V341be97d = strtr($V341be97d, $tmp);
           return $V341be97d;
       }
@@ -949,10 +949,10 @@
                   //change: special chars
                   if ($this->V93da65a9['xp_version'] <= 103) {
                       // 1.03 special chars
-                      $Vaa8af3eb = preg_replace("/\+([\x01-\x7F])#/e", "chr(ord('\\1') + 127)", $Vaa8af3eb);
+                  $Vaa8af3eb = preg_replace_callback("/\+([\x01-\x7F])#/", fn($matches) => chr(ord($matches[1]) + 127), $V341be97d);
                   } else {
                       // 1.04 special chars
-                      $Vaa8af3eb = preg_replace("/#(#|[0-9a-f]{2})/ie", "'\\1' == '#' ? '#' : chr(hexdec('\\1'))", $Vaa8af3eb);
+                  $Vaa8af3eb = preg_replace_callback("/#(#|[0-9a-f]{2})/i", fn($matches) => $matches[1] == '#' ? '#' : chr(hexdec($matches[1])), $V341be97d);
                   }
                   $Vaa8af3eb = strtr($Vaa8af3eb, $this->V42dfa3a4['char_trans']);
                   //endchange
